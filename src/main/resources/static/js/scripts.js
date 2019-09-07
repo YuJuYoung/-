@@ -139,6 +139,10 @@ $(".user-login input[type=submit]").on("click", function(e) {
 			if (data.valid) {
 				location.href = "http://localhost:8080";
 			} else {
+				$("#danger").remove();
+				$("input[name=userId]").val("");
+				$("input[name=password]").val("");
+				
 				alert(data.errorMessage);
 			}
 		}

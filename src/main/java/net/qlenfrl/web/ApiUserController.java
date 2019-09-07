@@ -38,6 +38,10 @@ public class ApiUserController {
 	
 	@PostMapping("/login")
 	public Result login(String userId, String password, HttpSession session) {
+		if (userId.equals("") || password.equals("")) {
+			return Result.fail(Result.INPUT_EMPTY);
+		}
+		
 		User user = userRepository.findByUserId(userId);
 		
 		if (user == null) {

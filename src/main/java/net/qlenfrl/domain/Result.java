@@ -5,6 +5,7 @@ public class Result {
 	public final static String USER_ERROR = "자신의 것만 가능합니다";
 	public final static String ID_ERROR = "아이디가 틀렸습니다";
 	public final static String PASSWORD_ERROR = "비밀번호가 틀렸습니다";
+	public final static String INPUT_EMPTY = "빈 항목이 있습니다";
 	
 	private boolean valid;
 	private String errorMessage;
