@@ -4,8 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,5 +59,38 @@ public class ApiAnswerController {
 		question.removeAnswer();
 		answerRepository.deleteById(answerId);
 		return Result.ok();
+	}
+	
+	@GetMapping("/{answerId}")
+	public Answer updateForm(HttpSession session, @PathVariable Long answerId) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return null;
+		}
+		
+		User loginedUser = HttpSessionUtils.getUserFromSession(session);
+		Answer answer = answerRepository.findById(answerId).get();
+		
+		if (!answer.isSameWriter(loginedUser)) {
+			return null;
+		}
+		
+		return answerRepository.findById(answerId).get();
+	}
+	
+	@PutMapping("/{answerId}")
+	public Answer updateAnswer(HttpSession session, @PathVariable Long answerId, String contents) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
+			return null;
+		}
+		
+		User loginedUser = HttpSessionUtils.getUserFromSession(session);
+		Answer answer = answerRepository.findById(answerId).get();
+		
+		if (!answer.isSameWriter(loginedUser)) {
+			return null;
+		}
+		
+		answer.update(contents);
+		return answerRepository.save(answer);
 	}
 }

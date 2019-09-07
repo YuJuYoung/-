@@ -1,5 +1,6 @@
 package net.qlenfrl.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class User extends AbstractEntity {
 	@JsonProperty
+	@Column(length=20, nullable=false)
 	private String userId;
 	
 	@JsonIgnore

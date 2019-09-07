@@ -35,6 +35,10 @@ public class Answer extends AbstractEntity {
 		this.contents = contents;
 		this.question = question;
 	}
+	
+	public void update(String contents) {
+		this.contents = contents;
+	}
 
 	public String getContents() {
 		return contents;

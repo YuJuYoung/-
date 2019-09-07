@@ -3,6 +3,7 @@ package net.qlenfrl.domain;
 public class Result {
 	public final static String LOGIN_ERROR = "로그인이 필요합니다";
 	public final static String USER_ERROR = "자신의 것만 가능합니다";
+	public final static String ID_ERROR = "아이디가 틀렸습니다";
 	public final static String PASSWORD_ERROR = "비밀번호가 틀렸습니다";
 	
 	private boolean valid;
